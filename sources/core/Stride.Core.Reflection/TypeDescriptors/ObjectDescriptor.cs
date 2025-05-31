@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using Stride.Core.Annotations;
 using Stride.Core.Yaml.Serialization;
 
 namespace Stride.Core.Reflection;
@@ -238,7 +239,7 @@ public class ObjectDescriptor : ITypeDescriptor
         if (get == null)
             return false;
 
-        bool forced = property.GetCustomAttribute<DataMemberAttribute>() is not null;
+        bool forced = property.GetCustomAttribute<DataMemberAttribute>() is not null || property.GetCustomAttribute<DataMemberActionAttribute>() is not null;
 
         if (forced && (get.IsPublic || get.IsAssembly))
             return true;
@@ -394,6 +395,9 @@ public class ObjectDescriptor : ITypeDescriptor
         {
             return false;
         }
+
+        if (AttributeRegistry.GetAttribute<DataMemberActionAttribute>(memberInfo) is not null)
+            return true;
 
         Type? memberType = null;
         if (memberInfo is FieldInfo fieldInfo)

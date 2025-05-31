@@ -5,6 +5,7 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:s="clr-namespace:System;assembly=mscorlib"
                     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                    xmlns:keys="clr-namespace:Stride.Core.Assets.Editor.Quantum.NodePresenters.Keys"
                     xmlns:math="clr-namespace:Stride.Core.Mathematics;assembly=Stride.Core.Mathematics"
                     xmlns:pvdr="clr-namespace:Stride.Core.Assets.Editor.View.TemplateProviders"
                     xmlns:cvt="clr-namespace:Stride.Core.Assets.Editor.View.ValueConverters"
@@ -20,6 +21,8 @@
     <ResourceDictionary Source="CommonResources.xaml"/>
   </ResourceDictionary.MergedDictionaries>
 
+  <cvt:ActionToCommand x:Key="ActionToCommand" />
+  
   <Storyboard x:Key="HighlightBorderAdornerValidationErrorStoryboard">
     <DoubleAnimation From="0" To="1"
                      AutoReverse="True" RepeatBehavior="3x"
@@ -222,7 +225,7 @@
               </Style>
             </sd:TextBox.Style>
           </sd:TextBox>
-          <CheckBox Grid.Column="3" Margin="2,0" VerticalAlignment="Center" HorizontalAlignment="Left"
+          <CheckBox Grid.Column="3" Margin="2,0" VerticalAlignment="Center" HorizontalAlignment="Left"                    
                     IsThreeState="{Binding Enabled.NodeValue, Converter={sd:IsEqualToParam}, ConverterParameter={x:Static qvm:NodeViewModel.DifferentValues}}"
                     IsChecked="{Binding Enabled.NodeValue, Converter={cvt:DifferentValueToParam}, ConverterParameter={x:Null}}"
                     Visibility="{Binding HasChild_Enabled, Converter={sd:VisibleOrCollapsed}}"/>
@@ -998,7 +1001,7 @@
   <!-- Provider for string editor -->
   <edvw:TypeMatchTemplateProvider x:Key="StringPropertyTemplateProvider" Type="{x:Type s:String}" edvw:PropertyViewHelper.TemplateCategory="PropertyEditor">
     <DataTemplate DataType="qvm:NodeViewModel">
-      <sd:TextBox x:Name="TextBox" Margin="2" SelectAllOnFocus="True"
+      <sd:TextBox x:Name="TextBox" Margin="2" SelectAllOnFocus="True"                  
                     Text="{Binding NodeValue, Converter={cvt:DifferentValuesToString}}"
                     WatermarkContentTemplate="{StaticResource DifferentValuesWatermarkTemplate}"/>
       <DataTemplate.Triggers>
@@ -1006,6 +1009,20 @@
           <Setter TargetName="TextBox" Property="WatermarkContent" Value="{sd:Localize (Different values)}"/>
         </DataTrigger>
       </DataTemplate.Triggers>
+    </DataTemplate>
+  </edvw:TypeMatchTemplateProvider>
+
+  <!-- Provider for string editor -->
+  <edvw:TypeMatchTemplateProvider x:Key="ActionPropertyTemplateProvider" Type="{x:Type s:Action}" edvw:PropertyViewHelper.TemplateCategory="PropertyEditor">
+    <DataTemplate DataType="qvm:NodeViewModel">
+      <Button Content="{Binding Name}">
+        <Button.Command>
+          <MultiBinding Converter="{StaticResource ActionToCommand}">
+            <Binding Path="NodeValue" />
+            <Binding Path="ServiceProvider" />
+          </MultiBinding>
+        </Button.Command>
+      </Button>
     </DataTemplate>
   </edvw:TypeMatchTemplateProvider>
 

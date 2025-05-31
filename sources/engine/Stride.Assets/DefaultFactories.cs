@@ -39,6 +39,10 @@ namespace Stride.Assets
     {
     }
 
+    public class DefaultAITextureFactory : DefaultAssetFactory<AITextureAsset>
+    {
+    }
+
     public class DefaultRenderTextureFactory : DefaultAssetFactory<RenderTextureAsset>
     {
     }

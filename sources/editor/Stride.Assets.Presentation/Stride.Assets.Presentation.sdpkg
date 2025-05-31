@@ -75,10 +75,11 @@ TemplateFolders:
         - !file Templates/Assets/Scripts/Utility/GameProfiler.sdtpl
         - !file Templates/Assets/Scripts/Utility/SceneStreaming.sdtpl
         - !file Templates/Assets/Sprites/SpriteSheetSprites.sdtpl
-        - !file Templates/Assets/Sprites/SpriteSheetUI.sdtpl
+        - !file Templates/Assets/Sprites/SpriteSheetUI.sdtpl        
         - !file Templates/Assets/Textures/ColorTexture.sdtpl
         - !file Templates/Assets/Textures/NormalMapTexture.sdtpl
         - !file Templates/Assets/Textures/GrayscaleTexture.sdtpl
         - !file Templates/Assets/Textures/DefaultRenderTexture.sdtpl
+        - !file Templates/Assets/Textures/AIColorTexture.sdtpl
         - !file Templates/Assets/UI/Library.sdtpl
         - !file Templates/Assets/UI/Page.sdtpl

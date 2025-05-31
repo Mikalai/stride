@@ -85,6 +85,30 @@ namespace Stride.Assets.Textures
                 Platform = textureParameters.Platform;
             }
 
+            public ImportParameters(AITextureConvertParameters textureParameters)
+            {
+                var asset = textureParameters.Texture;
+
+                // Compute SRgb usage
+                // If Texture is in auto mode, use the global settings, else use the settings overridden by the texture asset. 
+                IsSRgb = textureParameters.Texture.Type.IsSRgb(textureParameters.ColorSpace);
+                DesiredSize = new Size2((int)asset.Width, (int)asset.Height);
+                IsSizeInPercentage = asset.IsSizeInPercentage;
+                ShouldCompress = asset.IsCompressed;
+                DesiredAlpha = asset.Type.Alpha;
+                TextureHint = asset.Type.Hint;
+                InvertY = (asset.Type.Hint == TextureHint.NormalMap) ? ((NormapMapTextureType)asset.Type).InvertY : false;
+                GenerateMipmaps = asset.GenerateMipmaps;
+                if (asset.Type.Alpha != AlphaFormat.None)
+                    PremultiplyAlpha = asset.Type.PremultiplyAlpha;
+                ColorKeyColor = asset.Type.ColorKeyColor;
+                ColorKeyEnabled = asset.Type.ColorKeyEnabled;
+                TextureQuality = textureParameters.TextureQuality;
+                GraphicsPlatform = textureParameters.GraphicsPlatform;
+                GraphicsProfile = textureParameters.GraphicsProfile;
+                Platform = textureParameters.Platform;
+            }
+
             public ImportParameters(SpriteSheetAssetCompiler.SpriteSheetParameters spriteSheetParameters)
             {
                 var asset = spriteSheetParameters.SheetAsset;

@@ -28,6 +28,7 @@ namespace Stride.Assets.Textures
             get
             {
                 yield return typeof(TextureAsset);
+                yield return typeof(AITextureAsset);
                 yield return typeof(SpriteSheetAsset); // TODO: this is temporary, until we can make the asset templates ask compilers instead of importer which type they support
                 yield return typeof(HeightmapAsset);
             }

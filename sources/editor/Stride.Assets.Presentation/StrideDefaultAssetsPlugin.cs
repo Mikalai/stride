@@ -222,6 +222,7 @@ namespace Stride.Assets.Presentation
             session.AssetViewProperties.RegisterNodePresenterUpdater(new SpriteSheetAssetNodeUpdater());
             session.AssetViewProperties.RegisterNodePresenterUpdater(new UIAssetNodeUpdater());
             session.AssetViewProperties.RegisterNodePresenterUpdater(new TextureAssetNodeUpdater());
+            session.AssetViewProperties.RegisterNodePresenterUpdater(new AITextureAssetNodeUpdater());
             session.AssetViewProperties.RegisterNodePresenterUpdater(new VideoAssetNodeUpdater());
             session.AssetViewProperties.RegisterNodePresenterUpdater(new UnloadableObjectPropertyNodeUpdater());
             session.AssetViewProperties.RegisterNodePresenterUpdater(new VisualScriptNodeUpdater());

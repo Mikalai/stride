@@ -30,6 +30,7 @@ namespace Stride.Assets.Presentation.Templates
             TemplateManager.Register(AnimationFromFileTemplateGenerator.Default);
             TemplateManager.Register(VideoFromFileTemplateGenerator.Default);
             TemplateManager.Register(SoundFromFileTemplateGenerator.Default);
+            TemplateManager.Register(AIAssetTemplateGenerator.Default);
         }
     }
 }
